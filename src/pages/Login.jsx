@@ -12,10 +12,11 @@ import {
 import {
   FormControl,
   FormLabel,
-} from '@chakra-ui/form-control'
+} from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/toast'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import axios from 'axios'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -30,19 +31,9 @@ const Login = () => {
     setIsLoading(true)
 
     try {
-      // TODO: Replace with actual API call
-      // Simulating API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Mock response
-      const userData = {
-        id: 1,
-        email,
-        name: 'John Doe',
-        userType: 'customer',
-      }
-
-      login(userData)
+      const response = await axios.post('/login', { email, password })
+      const { token, user } = response.data
+      login(user, token)
       toast({
         title: 'Login successful',
         status: 'success',
@@ -53,7 +44,7 @@ const Login = () => {
     } catch (error) {
       toast({
         title: 'Error',
-        description: error.message || 'Failed to login',
+        description: error.response?.data?.error || 'Failed to login',
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -113,4 +104,4 @@ const Login = () => {
   )
 }
 
-export default Login 
+export default Login

@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/Signup.css'
+import axios from 'axios'
+import { useToast } from '@chakra-ui/react'
 
 const Signup = () => {
+  const toast = useToast()
   const [userType, setUserType] = useState('customer')
   const [formData, setFormData] = useState({
     name: '',
@@ -18,10 +21,27 @@ const Signup = () => {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: Implement signup logic
-    console.log('Form submitted:', formData)
+    try {
+      const response = await axios.post('/signup', formData)
+      toast({
+        title: 'Signup successful',
+        description: 'You can now login with your credentials',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      // Optionally, redirect to login page here
+    } catch (error) {
+      toast({
+        title: 'Signup failed',
+        description: error.response?.data?.error || error.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
   }
 
   return (
@@ -133,4 +153,4 @@ const Signup = () => {
   )
 }
 
-export default Signup 
+export default Signup
