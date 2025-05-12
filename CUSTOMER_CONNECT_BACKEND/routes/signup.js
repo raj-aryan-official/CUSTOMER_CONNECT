@@ -7,18 +7,59 @@ const router = express.Router();
 // Signup route
 router.post('/', async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword, role } = req.body;
+
+    // Input validation
+    if (!name || !email || !password || !confirmPassword) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ error: "Password must be at least 6 characters long" });
+    }
+
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "Passwords do not match" });
     }
-    const existingUser = await userModel.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "User already exists" });
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: "Invalid email format" });
     }
-    const user = new userModel({ name, email, password, confirmPassword });
+
+    // Check if user already exists
+    const existingUser = await userModel.findOne({ email: email.toLowerCase() });
+    if (existingUser) {
+      return res.status(400).json({ error: "User already exists with this email" });
+    }
+
+    // Create new user
+    const user = new userModel({
+      name,
+      email: email.toLowerCase(),
+      password,
+      confirmPassword,
+      role: role || 'customer' // Default to customer if role not specified
+    });
+
     await user.save();
-    res.status(201).json({ message: "User created successfully" });
+
+    // Return success response
+    res.status(201).json({
+      message: "User created successfully",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (err) {
+    console.error('Signup error:', err);
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({ error: err.message });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 });

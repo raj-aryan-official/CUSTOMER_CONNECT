@@ -4,15 +4,27 @@ const loginAttemptSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    trim: true,
+    lowercase: true
   },
   success: {
     type: Boolean,
-    required: true,
+    required: true
+  },
+  ipAddress: {
+    type: String,
+    required: true
+  },
+  userAgent: {
+    type: String,
+    required: true
   },
   timestamp: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
-module.exports = mongoose.model('LoginAttempt', loginAttemptSchema);
+const LoginAttempt = mongoose.model('LoginAttempt', loginAttemptSchema);
+
+module.exports = LoginAttempt;

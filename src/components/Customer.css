@@ -1,0 +1,187 @@
+.customer-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.dashboard-title {
+  color: #2c3e50;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.receipts-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.new-receipt-button {
+  background-color: #3498db !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.new-receipt-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #2980b9 !important;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.summary-card .MuiCardContent-root {
+  padding: 1.5rem;
+}
+
+.summary-card .MuiTypography-h6 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.summary-card .MuiTypography-h6::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.status-chip {
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.status-chip.pending {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+}
+
+.status-chip.approved {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+}
+
+.status-chip.rejected {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+}
+
+.new-receipt-dialog {
+  border-radius: 16px !important;
+}
+
+.new-receipt-dialog .MuiDialogTitle-root {
+  background: #f8f9fa;
+  padding: 1.5rem !important;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.new-receipt-dialog .MuiDialogContent-root {
+  padding: 2rem !important;
+}
+
+.new-receipt-dialog .MuiStepLabel-label {
+  font-weight: 500 !important;
+}
+
+.new-receipt-dialog .MuiStepIcon-root {
+  color: #3498db !important;
+}
+
+.new-receipt-dialog .MuiStepIcon-root.Mui-active {
+  color: #2980b9 !important;
+}
+
+.new-receipt-dialog .MuiStepIcon-root.Mui-completed {
+  color: #2ecc71 !important;
+}
+
+.new-receipt-dialog .MuiTextField-root {
+  margin-bottom: 1rem;
+}
+
+.new-receipt-dialog .MuiButton-root {
+  text-transform: none !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px !important;
+}
+
+.new-receipt-dialog .MuiButton-contained {
+  background-color: #3498db !important;
+}
+
+.new-receipt-dialog .MuiButton-contained:hover {
+  background-color: #2980b9 !important;
+}
+
+.new-receipt-dialog .MuiIconButton-root {
+  transition: all 0.2s ease !important;
+}
+
+.new-receipt-dialog .MuiIconButton-root:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.MuiSnackbar-root .MuiAlert-root {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.MuiSnackbar-root .MuiAlert-standardSuccess {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.MuiSnackbar-root .MuiAlert-standardError {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.MuiSnackbar-root .MuiAlert-standardWarning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.MuiSnackbar-root .MuiAlert-standardInfo {
+  background-color: #d1ecf1;
+  color: #0c5460;
+} 
